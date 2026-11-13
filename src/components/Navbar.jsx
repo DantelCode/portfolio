@@ -1,10 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 const links = [
+  { label: "Home", href: "#top" },
   { label: "Projects", href: "#projects" },
   { label: "Timeline", href: "#timeline" },
   { label: "Architecture", href: "#architecture" },
@@ -15,7 +16,19 @@ const links = [
 export default function Navbar() {
   const [compact, setCompact] = useState(false);
   const [active, setActive] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
   const pendingNavigation = useRef("");
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [menuOpen]);
 
   useEffect(() => {
     const updateScroll = () => setCompact(window.scrollY > 60);
@@ -80,7 +93,6 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      style={{ transform: "translateX(-50%)" }}
       className={`site-nav${compact ? " compact" : ""}`}
       aria-label="Main navigation"
       initial={{ y: -16, opacity: 0 }}
@@ -94,20 +106,26 @@ export default function Navbar() {
         onClick={() => {
           pendingNavigation.current = "";
           setActive("");
+          setMenuOpen(false);
         }}
       >
-        D.
+        <span className="nav-brand-desktop">D.</span>
+        <span className="nav-brand-mobile">Dantel</span>
       </a>
-      <div className="nav-links">
+      <div
+        className={`nav-links${menuOpen ? " is-open" : ""}`}
+        id="mobile-nav-menu"
+      >
         {links.map(({ label, href }) => (
           <a
-            className={`nav-link${active === href ? " is-active" : ""}`}
+            className={`nav-link${href === "#top" ? " nav-link-home" : ""}${active === href ? " is-active" : ""}`}
             href={href}
             key={href}
             aria-current={active === href ? "location" : undefined}
             onClick={() => {
               pendingNavigation.current = href;
               setActive(href);
+              setMenuOpen(false);
             }}
           >
             {active === href && (
@@ -121,11 +139,29 @@ export default function Navbar() {
           </a>
         ))}
       </div>
-      <a className="nav-status" href="#contact">
+      <a
+        className="nav-status"
+        href="#contact"
+        onClick={() => setMenuOpen(false)}
+      >
         <span className="status-dot" />
         <span style={{ marginBottom: '-2px' }}>Available for work</span>
         <ArrowUpRight size={12} aria-hidden="true" />
       </a>
+      <button
+        className="nav-toggle"
+        type="button"
+        aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+        aria-controls="mobile-nav-menu"
+        aria-expanded={menuOpen}
+        onClick={() => setMenuOpen((open) => !open)}
+      >
+        {menuOpen ? (
+          <X size={18} aria-hidden="true" />
+        ) : (
+          <Menu size={18} aria-hidden="true" />
+        )}
+      </button>
     </motion.nav>
   );
 }

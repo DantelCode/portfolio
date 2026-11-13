@@ -173,8 +173,16 @@ export default function Projects() {
               grid-template-columns: 1fr;
             }
 
+            .project-grid .project-column {
+              display: contents;
+            }
+
             .project-grid .project-column-right {
               grid-template-rows: none;
+            }
+
+            .project-grid .technology-card {
+              order: 1;
             }
           }
         `}</style>
@@ -228,7 +236,7 @@ export default function Projects() {
             <h3 className="project-title">My tech stack</h3>
             <p className="project-description">The tools I use to design, build, and ship digital experiences.</p>
             <div className="project-tags" style={{ gap: "8px" }} aria-label="Technologies">
-              {["React.js", "Next.js", "Node.js", "JavaScript", "MongoDB", "Vercel", "Firebase", "Render"].map((technology) => (
+              {["Next.js", "Node.js", "React", "MongoDB", "Firebase", "Render"].map((technology) => (
                 <motion.span
                   className="project-tag"
                   style={{ fontSize: "16px", borderRadius: "4px", cursor: "pointer" }}
