@@ -548,7 +548,7 @@ input:focus-visible {
   align-items: center;
   justify-content: center;
   gap: 16px;
-  margin-top: 64px;
+  margin-top: 32px;
   color: #696473;
   font-family: var(--font-mono);
   font-size: 14px;
