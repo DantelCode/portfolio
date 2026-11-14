@@ -83,7 +83,7 @@ input:focus-visible {
 
 .section {
   position: relative;
-  /* padding-block: 24px; */
+  padding-block: 24px;
 }
 
 .section-heading {
