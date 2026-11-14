@@ -5,7 +5,8 @@
   --background: #07070b;
   --surface: #0e0e15;
   --foreground: #f4f2f8;
-  --muted: #918d9f;
+  /* --muted: #918d9f; */
+  --muted: #ceccd6;
   --violet: #a68aff;
   --cyan: #8bd8e8;
   --line: rgba(255, 255, 255, 0.075);
@@ -82,7 +83,7 @@ input:focus-visible {
 
 .section {
   position: relative;
-  padding-block: 132px;
+  padding-block: 64px;
 }
 
 .section-heading {
@@ -116,14 +117,14 @@ input:focus-visible {
   letter-spacing: -0.065em;
   line-height: 1.06;
 }
-/* 
+
 .serif-italic {
   color: #c3adff;
   font-family: var(--font-serif), Georgia, serif;
   font-weight: 400;
   font-style: italic;
   letter-spacing: -0.025em;
-} */
+}
 
 .muted-copy {
   color: var(--muted);
@@ -1897,7 +1898,7 @@ input:focus-visible {
 @media (max-width: 700px) {
   .pill-button { font-size: 12px; }
   .page-shell { width: min(100% - 40px, 540px); }
-  .section { padding-block: 92px; }
+  .section { padding-block: 24px; }
   .site-nav {
     left: 50%;
     top: 12px;
