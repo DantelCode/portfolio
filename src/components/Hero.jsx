@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, ArrowUpRight, Download, Facebook, Github, Linkedin } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Facebook, Github, Linkedin } from "lucide-react";
 import { useRef } from "react";
 
 export default function Hero() {
@@ -94,13 +94,12 @@ export default function Hero() {
             Explore projects <ArrowUpRight size={14} aria-hidden="true" />
           </motion.a>
           <motion.a
-            className="pill-button"
-            href="/api/cv"
-            aria-label="Download CV as a PDF"
+            className="pill-button hero-contact-button"
+            href="#contact"
             whileHover={{ scale: 1.025 }}
             whileTap={{ scale: 0.97 }}
           >
-            Download CV <Download size={14} aria-hidden="true" />
+            Contact me <ArrowUpRight size={14} aria-hidden="true" />
           </motion.a>
         </motion.div>
 

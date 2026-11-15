@@ -97,6 +97,7 @@ export default function Timeline() {
               </div>
 
               <article className="achievement-card" onMouseMove={updateSpotlight}>
+                <time className="achievement-card-date" dateTime={achievement.dateTime}>{achievement.date}</time>
                 <div className="achievement-card-top">
                   <span className="achievement-type"><Award size={13} aria-hidden="true" />{achievement.type}</span>
                   <span className="achievement-issuer">{achievement.issuer}</span>
