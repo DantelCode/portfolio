@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, Cloud, Code2, Copy, Database, Globe2, Layers3, Server, Workflow } from "lucide-react";
 import { useState } from "react";
+import posthog from "posthog-js";
 
 const layers = [
   {
@@ -73,6 +74,9 @@ export default function Architecture() {
       await navigator.clipboard.writeText(codeText);
       setCopied(true);
       setCopyError(false);
+      if (process.env.NEXT_PUBLIC_POSTHOG_KEY && process.env.NEXT_PUBLIC_POSTHOG_HOST) {
+        posthog.capture("architecture_code_copied", { layer: activeLayer.id });
+      }
       window.setTimeout(() => setCopied(false), 2000);
     } catch {
       setCopyError(true);
@@ -102,7 +106,14 @@ export default function Architecture() {
                     id={`tab-${layer.id}`}
                     aria-selected={activeLayer.id === layer.id}
                     aria-controls="architecture-detail"
-                    onClick={() => { setActiveLayer(layer); setCopied(false); setCopyError(false); }}
+                    onClick={() => {
+                      setActiveLayer(layer);
+                      setCopied(false);
+                      setCopyError(false);
+                      if (process.env.NEXT_PUBLIC_POSTHOG_KEY && process.env.NEXT_PUBLIC_POSTHOG_HOST) {
+                        posthog.capture("technology_layer_selected", { layer: layer.id });
+                      }
+                    }}
                   >
                     <span className="layer-label"><Icon size={16} />{layer.label}</span>
                     <span className="layer-count">{layer.count}</span>

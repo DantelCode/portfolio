@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowDownRight, ArrowUpRight, ExternalLink, Github } from "lucide-react";
 import StatusTicker from "@/components/StatusTicker";
+import posthog from "posthog-js";
 const projects = [
   {
     id: "01",
@@ -131,6 +132,12 @@ function updateSpotlight(event) {
   event.currentTarget.style.setProperty("--spot-y", `${event.clientY - bounds.top}px`);
 }
 
+function captureProjectAction(event, project) {
+  if (process.env.NEXT_PUBLIC_POSTHOG_KEY && process.env.NEXT_PUBLIC_POSTHOG_HOST) {
+    posthog.capture(event, { project_id: project.id, project_name: project.name });
+  }
+}
+
 export default function Projects() {
   return (
     <section className="section projects-section page-shell" id="projects" aria-labelledby="projects-title">
@@ -211,10 +218,22 @@ export default function Projects() {
                 {project.tags.map((tag) => <span className="project-tag" key={tag}>{tag}</span>)}
               </div>
               <div className="project-links">
-                <a className="project-link" href="#contact" aria-label={`Ask about ${project.name}`}>
+                <a
+                  className="project-link"
+                  href="#contact"
+                  aria-label={`Ask about ${project.name}`}
+                  onClick={() => captureProjectAction("project_discussion_started", project)}
+                >
                   <ExternalLink size={12} /> Discuss project
                 </a>
-                <a className="project-link" href="https://github.com/" target="_blank" rel="noreferrer" aria-label="Browse GitHub repositories">
+                <a
+                  className="project-link"
+                  href="https://github.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Browse GitHub repositories"
+                  onClick={() => captureProjectAction("project_repository_opened", project)}
+                >
                   <Github size={12} /> GitHub
                 </a>
               </div>
@@ -275,10 +294,22 @@ export default function Projects() {
                 {project.tags.map((tag) => <span className="project-tag" key={tag}>{tag}</span>)}
               </div>
               <div className="project-links">
-                <a className="project-link" href="#contact" aria-label={`Ask about ${project.name}`}>
+                <a
+                  className="project-link"
+                  href="#contact"
+                  aria-label={`Ask about ${project.name}`}
+                  onClick={() => captureProjectAction("project_discussion_started", project)}
+                >
                   <ExternalLink size={12} /> Discuss project
                 </a>
-                <a className="project-link" href="https://github.com/" target="_blank" rel="noreferrer" aria-label="Browse GitHub repositories">
+                <a
+                  className="project-link"
+                  href="https://github.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Browse GitHub repositories"
+                  onClick={() => captureProjectAction("project_repository_opened", project)}
+                >
                   <Github size={12} /> GitHub
                 </a>
               </div>
