@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
-const narrative = "I’m Ezekwenna Chukwunonso Daniel, a self-taught web developer and designer who learned by building, breaking, and shipping real things. No traditional route—just practical experience and a focus on creating thoughtful digital experiences. I’m also sharpening my skills in web design and constantly practicing to refine my craft and create better user experiences.";
+const narrative = "I’m Ezekwenna Chukwunonso Daniel, a web developer and designer who learned by building, breaking, and shipping real things. No traditional route—just practical experience and a focus on creating thoughtful digital experiences. I’m also sharpening my skills in web design and constantly practicing to refine my craft and create better user experiences.";
 const words = narrative.split(" ");
 
 function HighlightedWord({ word, index, progress }) {
