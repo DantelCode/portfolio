@@ -2,6 +2,7 @@
 
 import { ArrowRight, ArrowUp, Check, Facebook, Github, Linkedin, Mail, Send } from "lucide-react";
 import { useState } from "react";
+import posthog from "posthog-js";
 
 const email = "ezekwennacd@gmail.com";
 const viewDate = new Date().getFullYear();
@@ -18,6 +19,9 @@ export default function Footer() {
       await navigator.clipboard.writeText(email);
       setCopied(true);
       setCopyError(false);
+      if (process.env.NEXT_PUBLIC_POSTHOG_KEY && process.env.NEXT_PUBLIC_POSTHOG_HOST) {
+        posthog.capture("contact_email_copied", { method: "clipboard" });
+      }
       window.setTimeout(() => setCopied(false), 2200);
     } catch {
       setCopyError(true);
@@ -74,12 +78,40 @@ export default function Footer() {
                 {copied ? <Check size={14} /> : <Mail size={14} />}
                 {copied ? "Copied!" : copyError ? "Copy unavailable" : email}
               </button>
-              <a className="pill-button" href={`mailto:${email}`}>Send an email <ArrowRight size={13} /></a>
+              <a
+                className="pill-button"
+                href={`mailto:${email}`}
+                onClick={() => {
+                  if (process.env.NEXT_PUBLIC_POSTHOG_KEY && process.env.NEXT_PUBLIC_POSTHOG_HOST) {
+                    posthog.capture("contact_email_opened", { placement: "footer" });
+                  }
+                }}
+              >
+                Send an email <ArrowRight size={13} />
+              </a>
             </div>
             <div className="footer-socials" aria-label="Social profiles">
-              <a className="icon-button" href="https://github.com/DantelCode" target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={15} /></a>
-              <a className="icon-button" href="https://www.linkedin.com/chukwunonso-ezekwenna-07712625b" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={15} /></a>
-              <a className="icon-button" href="https://www.facebook.com/share/1MRsVoztap/" target="_blank" rel="noreferrer" aria-label="Facebook"><Facebook size={15} /></a>
+              {[
+                { label: "GitHub", href: "https://github.com/DantelCode", Icon: Github },
+                { label: "LinkedIn", href: "https://www.linkedin.com/chukwunonso-ezekwenna-07712625b", Icon: Linkedin },
+                { label: "Facebook", href: "https://www.facebook.com/share/1MRsVoztap/", Icon: Facebook },
+              ].map(({ label, href, Icon }) => (
+                <a
+                  className="icon-button"
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
+                  key={label}
+                  onClick={() => {
+                    if (process.env.NEXT_PUBLIC_POSTHOG_KEY && process.env.NEXT_PUBLIC_POSTHOG_HOST) {
+                      posthog.capture("social_profile_opened", { profile: label, placement: "footer" });
+                    }
+                  }}
+                >
+                  <Icon size={15} />
+                </a>
+              ))}
             </div>
           </div>
 

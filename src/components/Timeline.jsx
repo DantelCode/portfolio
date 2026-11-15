@@ -3,6 +3,7 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Award, ExternalLink, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import posthog from "posthog-js";
 
 const achievements = [
   {
@@ -59,6 +60,9 @@ export default function Timeline() {
   const openCertificate = (achievement, event) => {
     triggerRef.current = event.currentTarget;
     setSelectedAchievement(achievement);
+    if (process.env.NEXT_PUBLIC_POSTHOG_KEY && process.env.NEXT_PUBLIC_POSTHOG_HOST) {
+      posthog.capture("certificate_viewed", { certificate_type: achievement.type });
+    }
   };
 
   return (
@@ -154,6 +158,11 @@ export default function Timeline() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label="Open certificate in a new tab"
+                  onClick={() => {
+                    if (process.env.NEXT_PUBLIC_POSTHOG_KEY && process.env.NEXT_PUBLIC_POSTHOG_HOST) {
+                      posthog.capture("certificate_external_opened", { certificate_type: selectedAchievement.type });
+                    }
+                  }}
                 >
                   <ExternalLink size={14} />
                 </a>
