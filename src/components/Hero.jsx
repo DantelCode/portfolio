@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowDown, ArrowUpRight, Facebook, Github, Linkedin } from "lucide-react";
 import { useRef } from "react";
+import posthog from "posthog-js";
 
 export default function Hero() {
   const glowRef = useRef(null);
@@ -124,6 +125,7 @@ export default function Hero() {
               target="_blank"
               rel="noreferrer"
               aria-label={`Visit ${label}`}
+              onClick={() => posthog.capture("social_profile_opened", { platform: label, placement: "hero" })}
               whileHover={{ scale: 1.12, y: -3, rotate: -4 }}
               whileTap={{ scale: 0.9, rotate: 0 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}

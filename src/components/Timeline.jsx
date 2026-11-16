@@ -3,6 +3,7 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Award, ExternalLink, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import posthog from "posthog-js";
 
 const achievements = [
   {
@@ -58,6 +59,7 @@ export default function Timeline() {
 
   const openCertificate = (achievement, event) => {
     triggerRef.current = event.currentTarget;
+    posthog.capture("certificate_viewed", { certificate_type: achievement.type });
     setSelectedAchievement(achievement);
   };
 
