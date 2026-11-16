@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowDownRight, ArrowUpRight, ExternalLink, Github } from "lucide-react";
 import StatusTicker from "@/components/StatusTicker";
+import posthog from "posthog-js";
 const projects = [
   {
     id: "01",
@@ -211,7 +212,12 @@ export default function Projects() {
                 {project.tags.map((tag) => <span className="project-tag" key={tag}>{tag}</span>)}
               </div>
               <div className="project-links">
-                <a className="project-link" href="#contact" aria-label={`Ask about ${project.name}`}>
+                <a
+                  className="project-link"
+                  href="#contact"
+                  aria-label={`Ask about ${project.name}`}
+                  onClick={() => posthog.capture("project_inquiry_started", { project_name: project.name })}
+                >
                   <ExternalLink size={12} /> Discuss project
                 </a>
                 <a className="project-link" href="https://github.com/" target="_blank" rel="noreferrer" aria-label="Browse GitHub repositories">
@@ -275,7 +281,12 @@ export default function Projects() {
                 {project.tags.map((tag) => <span className="project-tag" key={tag}>{tag}</span>)}
               </div>
               <div className="project-links">
-                <a className="project-link" href="#contact" aria-label={`Ask about ${project.name}`}>
+                <a
+                  className="project-link"
+                  href="#contact"
+                  aria-label={`Ask about ${project.name}`}
+                  onClick={() => posthog.capture("project_inquiry_started", { project_name: project.name })}
+                >
                   <ExternalLink size={12} /> Discuss project
                 </a>
                 <a className="project-link" href="https://github.com/" target="_blank" rel="noreferrer" aria-label="Browse GitHub repositories">
