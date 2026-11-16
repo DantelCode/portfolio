@@ -2,8 +2,10 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, Cloud, Code2, Copy, Database, Globe2, Layers3, Server, Workflow } from "lucide-react";
+import posthog from "posthog-js";
 import { useState } from "react";
 
+const posthogConfigured = Boolean(process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN && process.env.NEXT_PUBLIC_POSTHOG_HOST);
 const layers = [
   {
     id: "frontend",
@@ -71,6 +73,7 @@ export default function Architecture() {
   const copyCode = async () => {
     try {
       await navigator.clipboard.writeText(codeText);
+      if (posthogConfigured) posthog.capture("architecture_code_copied", { layer_id: activeLayer.id });
       setCopied(true);
       setCopyError(false);
       window.setTimeout(() => setCopied(false), 2000);

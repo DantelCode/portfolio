@@ -1,9 +1,12 @@
 "use client";
 
 import { ArrowRight, ArrowUp, Check, Facebook, Github, Linkedin, Mail, Send } from "lucide-react";
+import posthog from "posthog-js";
 import { useState } from "react";
+import { AnalyticsNotice } from "@/components/Analytics";
 
 const email = "ezekwennacd@gmail.com";
+const posthogConfigured = Boolean(process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN && process.env.NEXT_PUBLIC_POSTHOG_HOST);
 const viewDate = new Date().getFullYear();
 
 export default function Footer() {
@@ -16,6 +19,7 @@ export default function Footer() {
   const copyEmail = async () => {
     try {
       await navigator.clipboard.writeText(email);
+      if (posthogConfigured) posthog.capture("contact_email_copied");
       setCopied(true);
       setCopyError(false);
       window.setTimeout(() => setCopied(false), 2200);
@@ -74,7 +78,13 @@ export default function Footer() {
                 {copied ? <Check size={14} /> : <Mail size={14} />}
                 {copied ? "Copied!" : copyError ? "Copy unavailable" : email}
               </button>
-              <a className="pill-button" href={`mailto:${email}`}>Send an email <ArrowRight size={13} /></a>
+              <a
+                className="pill-button"
+                href={`mailto:${email}`}
+                onClick={() => posthogConfigured && posthog.capture("contact_email_started")}
+              >
+                Send an email <ArrowRight size={13} />
+              </a>
             </div>
             <div className="footer-socials" aria-label="Social profiles">
               <a className="icon-button" href="https://github.com/DantelCode" target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={15} /></a>
@@ -124,6 +134,7 @@ export default function Footer() {
           <span style={{ letterSpacing: "-1px" }}><span style={{ fontSize: "18px" }}>©</span> {viewDate} Dantel. Built with care.</span>
           <a className="back-top" href="#top">Back to top <ArrowUp size={12} /></a>
         </div>
+        <AnalyticsNotice />
       </div>
     </footer>
   );

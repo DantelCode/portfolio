@@ -654,6 +654,7 @@ input:focus-visible {
 
 .ticker-text strong {
   color: #e8e1f4;
+  
   font-weight: 500;
 }
 
@@ -1832,6 +1833,30 @@ input:focus-visible {
   gap: 8px;
   margin-top: 20px;
 }
+
+.analytics-notice {
+  display: grid;
+  max-width: 470px;
+  gap: 9px;
+  margin-top: 22px;
+  color: #827b8a;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.analytics-toggle {
+  width: fit-content;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: #b8a2f5;
+  font-size: 12px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.analytics-toggle:hover { color: #e0d5ff; }
 
 .terminal {
   overflow: hidden;

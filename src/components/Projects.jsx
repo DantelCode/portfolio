@@ -2,7 +2,10 @@
 
 import { motion } from "framer-motion";
 import { ArrowDownRight, ArrowUpRight, ExternalLink, Github } from "lucide-react";
+import posthog from "posthog-js";
 import StatusTicker from "@/components/StatusTicker";
+
+const posthogConfigured = Boolean(process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN && process.env.NEXT_PUBLIC_POSTHOG_HOST);
 const projects = [
   {
     id: "01",
@@ -211,10 +214,22 @@ export default function Projects() {
                 {project.tags.map((tag) => <span className="project-tag" key={tag}>{tag}</span>)}
               </div>
               <div className="project-links">
-                <a className="project-link" href="#contact" aria-label={`Ask about ${project.name}`}>
+                <a
+                  className="project-link"
+                  href="#contact"
+                  aria-label={`Ask about ${project.name}`}
+                  onClick={() => posthogConfigured && posthog.capture("project_contact_requested", { project_id: project.id })}
+                >
                   <ExternalLink size={12} /> Discuss project
                 </a>
-                <a className="project-link" href="https://github.com/" target="_blank" rel="noreferrer" aria-label="Browse GitHub repositories">
+                <a
+                  className="project-link"
+                  href="https://github.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Browse GitHub repositories"
+                  onClick={() => posthogConfigured && posthog.capture("project_repository_opened", { project_id: project.id })}
+                >
                   <Github size={12} /> GitHub
                 </a>
               </div>
@@ -275,10 +290,22 @@ export default function Projects() {
                 {project.tags.map((tag) => <span className="project-tag" key={tag}>{tag}</span>)}
               </div>
               <div className="project-links">
-                <a className="project-link" href="#contact" aria-label={`Ask about ${project.name}`}>
+                <a
+                  className="project-link"
+                  href="#contact"
+                  aria-label={`Ask about ${project.name}`}
+                  onClick={() => posthogConfigured && posthog.capture("project_contact_requested", { project_id: project.id })}
+                >
                   <ExternalLink size={12} /> Discuss project
                 </a>
-                <a className="project-link" href="https://github.com/" target="_blank" rel="noreferrer" aria-label="Browse GitHub repositories">
+                <a
+                  className="project-link"
+                  href="https://github.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Browse GitHub repositories"
+                  onClick={() => posthogConfigured && posthog.capture("project_repository_opened", { project_id: project.id })}
+                >
                   <Github size={12} /> GitHub
                 </a>
               </div>
