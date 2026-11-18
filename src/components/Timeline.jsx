@@ -69,7 +69,7 @@ export default function Timeline() {
     <section className="section timeline-section page-shell" id="timeline" aria-labelledby="timeline-title">
       <div className="timeline-heading">
         <div>
-          <span className="eyebrow">Learning, made tangible</span>
+          <span className="eyebrow">Timeline</span>
           <h2 className="section-title" id="timeline-title">
             Milestones &amp;<br /><span className="serif-italic">proof.</span>
           </h2>

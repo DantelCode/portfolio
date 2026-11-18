@@ -40,13 +40,11 @@ export default function Footer() {
       setCommand("");
       return;
     } else if (normalized === "help") {
-      response = <>Commands: <span className="code-string">help</span>, <span className="code-string">email</span>, <span className="code-string">contact</span>, <span className="code-string">socials</span>, <span className="code-string">projects</span>, <span className="code-string">about</span>, <span className="code-string">matrix</span>, <span className="code-string">matrix stop</span>, <span className="code-string">clear</span></>;
-    } else if (normalized === "email" || normalized === "mail") {
-      response = <>Open an email draft to <a href={`mailto:${email}`}>{email}</a>.</>;
+      response = <>Commands: <span className="code-string">help</span>, <span className="code-string">contact</span>, <span className="code-string">socials</span>, <span className="code-string">projects</span>, <span className="code-string">about</span>, <span className="code-string">matrix</span>, <span className="code-string">matrix stop</span>, <span className="code-string">clear</span></>;
     } else if (normalized === "contact") {
       response = <>Reach me at <a href={`mailto:${email}`}>{email}</a></>;
     } else if (normalized === "socials") {
-      response = <>GitHub: <a href="https://github.com/DantelCode" target="_blank" rel="noreferrer">DantelCode</a> · LinkedIn: <a href="https://www.linkedin.com/chukwunonso-ezekwenna-07712625b" target="_blank" rel="noreferrer">LinkedIn</a></>;
+      response = <>GitHub: <a href="https://github.com/DantelCode" target="_blank" rel="noreferrer">DantelCode</a> • LinkedIn: <a href="https://www.linkedin.com/chukwunonso-ezekwenna-07712625b" target="_blank" rel="noreferrer">LinkedIn</a> • Facebook: <a href="https://www.facebook.com/share/1MRsVoztap/" target="_blank" rel="noreferrer">Facebook</a></>;
     } else if (normalized === "projects") {
       response = <>Jump to <a href="#projects">selected projects</a>.</>;
     } else if (normalized === "about") {

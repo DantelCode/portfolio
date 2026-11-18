@@ -137,11 +137,11 @@ function updateSpotlight(event) {
 export default function Projects() {
   return (
     <section className="section projects-section page-shell" id="projects" aria-labelledby="projects-title">
-      <StatusTicker />
+      {/* <StatusTicker /> */}
 
       <div className="projects-heading-row">
         <div className="section-heading">
-          <span className="eyebrow">Selected work · 2025—26</span>
+          <span className="eyebrow">Projects • 2025—26</span>
           <h2 className="section-title" id="projects-title">Built with intent.<br /><span className="serif-italic">Made to matter.</span></h2>
         </div>
         <p className="projects-note"><ArrowDownRight size={14} /> Independent explorations &amp; builds</p>

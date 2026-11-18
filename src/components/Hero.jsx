@@ -140,18 +140,6 @@ export default function Hero() {
             </motion.a>
           ))}
         </motion.div>
-
-        <motion.a
-          className="hero-footnote"
-          href="#projects"
-          aria-label="Scroll to selected work"
-          variants={{
-            hidden: { opacity: 0 },
-            show: { opacity: 1, transition: { duration: 0.8 } },
-          }}
-        >
-          Independent by design <ArrowDown size={11} style={{ marginTop: '-1px' }} aria-hidden="true" />
-        </motion.a>
       </motion.div>
     </section>
   );

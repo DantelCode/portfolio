@@ -252,24 +252,5 @@ export function AnalyticsNotice() {
     }
   };
 
-  return (
-    <div className="analytics-notice">
-      <p>
-        {configured
-          ? "PostHog tracks user activities with a pseudonymous browser ID; text entry is not collected."
-          : "Usage analytics are not active on this deployment."}
-        {preferenceError && <span role="status"> Your preference could not be saved in this browser.</span>}
-      </p>
-      {configured && (
-        <button
-          className="analytics-toggle"
-          type="button"
-          onClick={toggleAnalytics}
-          data-analytics-ignore
-        >
-          {optedOut ? "Enable analytics" : "Opt out of analytics"}
-        </button>
-      )}
-    </div>
-  );
+  return <></>
 }
