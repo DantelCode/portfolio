@@ -113,7 +113,7 @@ export default function Hero() {
           style={{ display: "flex", gap: 10, marginTop: 32, alignItems: "center", justifyContent: "center" }}
         >
           {[
-            { label: "LinkedIn", href: "https://www.linkedin.com/chukwunonso-ezekwenna-07712625b", Icon: Linkedin },
+            { label: "LinkedIn", href: "https://www.linkedin.com/in/chukwunonso-ezekwenna-07712625b/", Icon: Linkedin },
             { label: "GitHub", href: "https://github.com/DantelCode", Icon: Github },
             { label: "Facebook", href: "https://www.facebook.com/share/1MRsVoztap/", Icon: Facebook },
           ].map(({ label, href, Icon }) => (

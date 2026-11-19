@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { ArrowDownRight, ArrowUpRight, ExternalLink, Github } from "lucide-react";
 import posthog from "posthog-js";
-import StatusTicker from "@/components/StatusTicker";
 
 const posthogConfigured = Boolean(process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN && process.env.NEXT_PUBLIC_POSTHOG_HOST);
 const projects = [

@@ -86,7 +86,7 @@ export default function Footer() {
             </div>
             <div className="footer-socials" aria-label="Social profiles">
               <a className="icon-button" href="https://github.com/DantelCode" target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={15} /></a>
-              <a className="icon-button" href="https://www.linkedin.com/chukwunonso-ezekwenna-07712625b" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={15} /></a>
+              <a className="icon-button" href="https://www.linkedin.com/in/chukwunonso-ezekwenna-07712625b/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={15} /></a>
               <a className="icon-button" href="https://www.facebook.com/share/1MRsVoztap/" target="_blank" rel="noreferrer" aria-label="Facebook"><Facebook size={15} /></a>
             </div>
           </div>

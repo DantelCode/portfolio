@@ -5,7 +5,6 @@
   --background: #07070b;
   --surface: #0e0e15;
   --foreground: #f4f2f8;
-  /* --muted: #918d9f; */
   --muted: #ceccd6;
   --violet: #a68aff;
   --cyan: #8bd8e8;
@@ -1503,7 +1502,7 @@ input:focus-visible {
   background: rgba(15, 14, 20, 0.76);
   box-shadow: 0 30px 90px rgba(0, 0, 0, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.035);
   backdrop-filter: blur(24px);
-  /* transition: width 0.5s ease; */
+  transition: width 0.5s ease;
 }
 
 .architecture-left {
@@ -1703,7 +1702,7 @@ input:focus-visible {
 
 .about-section {
   width: 100%;
-  padding-block: 60px 150px;
+  padding: 24px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.006), transparent);
@@ -1782,7 +1781,7 @@ input:focus-visible {
 .footer {
   position: relative;
   overflow: hidden;
-  padding: 40px 0;
+  padding: 0;
   width: 100%;
 }
 
@@ -2122,18 +2121,18 @@ input:focus-visible {
   .architecture-left { min-height: 0; gap: 18px; padding: 14px; }
   .layer-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
   .layer-button { align-items: flex-start; flex-direction: column; gap: 7px; padding: 10px 8px; }
-  .layer-label { gap: 6px; font-size: 10px; }
+  .layer-label { gap: 6px; font-size: 12px; }
   .layer-label svg { width: 14px; height: 14px; }
-  .layer-count { padding-left: 20px; font-size: 8px; }
+  .layer-count { display: none; }
   .architecture-note { padding-top: 12px; }
   .schema-card { min-height: 170px; }
-  .schema-node { gap: 5px; padding: 7px; font-size: 8px; }
+  .schema-node { padding: 7px; font-size: 14px; }
   .schema-node svg { width: 11px; height: 11px; }
   .about-grid { grid-template-columns: 1fr; gap: 28px; }
   .about-intro { position: static; }
   .about-intro .muted-copy { max-width: 420px; }
   .about-text { font-size: clamp(20px, 3vw, 25px); }
-  .footer { padding-top: 90px; }
+  .footer { padding-top: 30px; }
   .footer-content { grid-template-columns: 1fr; gap: 35px; padding-bottom: 55px; }
   .terminal { width: 100%; }
   .footer-bottom { font-size: 12px; }
@@ -2147,7 +2146,7 @@ input:focus-visible {
   .nav-status { padding: 7px 6px; font-size: 8px; }
   .nav-brand { width: 25px; height: 25px; }
   .hero-title { font-size: clamp(42px, 12vw, 58px); }
-  .hero-badge { font-size: 8px; }
+  .hero-badge { font-size: 10px; }
   .hero-actions { flex-direction: column; align-items: center; }
   .hero-actions .pill-button { min-width: 198px; }
   .project-preview,

@@ -52,7 +52,7 @@ export default function About() {
               />
               <circle cx="12" cy="10" r="2.5" />
             </svg>
-            <span>Nigeria</span>
+            <span>Enugu, Nigeria</span>
           </div>
         </motion.div>
 
